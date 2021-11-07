@@ -58,7 +58,7 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
        }
     }
 
-
+//=====================Mouse listener implementation===========
     @Override
     public void mousePressed(MouseEvent e) {
         this.x_pressed = e.getX();
@@ -107,6 +107,7 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
         this.repaint();
     }
 
+    // ============ unused features============================//
     @Override
     public void mouseMoved(MouseEvent e) {}
     @Override

@@ -75,17 +75,17 @@ public class Window extends JFrame implements ActionListener {
         orange.addActionListener(this);
 
 
-        JPanel deref = new JPanel();
-        deref.setBounds(1,480,400,60);
-        deref.setLayout(new GridLayout(2,4));
-        deref.add(black);
-        deref.add(yellow);
-        deref.add(red);
-        deref.add(pink);
-        deref.add(green);
-        deref.add(purple);
-        deref.add(blue);
-        deref.add(orange);
+        JPanel PanelColors = new JPanel();
+        PanelColors.setBounds(1,480,400,60);
+        PanelColors.setLayout(new GridLayout(2,4));
+        PanelColors.add(black);
+        PanelColors.add(yellow);
+        PanelColors.add(red);
+        PanelColors.add(pink);
+        PanelColors.add(green);
+        PanelColors.add(purple);
+        PanelColors.add(blue);
+        PanelColors.add(orange);
 
 //=====================Panel Figures======================================
 
@@ -112,7 +112,7 @@ public class Window extends JFrame implements ActionListener {
     //======================Add panels to the window==============================
 
         contentPanel.add(this.draw);
-        contentPanel.add(deref);
+        contentPanel.add(PanelColors);
         contentPanel.add(southPanel);
         this.setJMenuBar(m);
         this.setVisible(true);

@@ -25,10 +25,7 @@ public class Point {
     }
 
     /**static public void main(String[] args){
-        Point punto1 = new Point();
-        System.out.println(punto1.toString());
-        Point punto2 = new Point(10, 20);
-        System.out.println(punto2.toString());
+
     }*/
 }
 
