@@ -5,19 +5,19 @@ class Rectangle extends Figure{
     protected int length = 0;
     protected int width = 0;
 
-    public Rectangle (int X, int Y, int m, int n, Color c){
+    public Rectangle (int X, int Y, int l, int w, Color c){
         super(X, Y, c);
-        this.length = m;
-        this.width = n;
+        this.length = l;
+        this.width = w;
     }
 
     public void setLength(int length) {this.length = length;}
     public void setWidth(int width) {this.width = width;}
 
-    public int getLength(Rectangle rectangle){return rectangle.length;}
-    public int getWidth(Rectangle rectangle){return rectangle.width;}
-    public int getPerimeter(Rectangle rectangle){return (2*(rectangle.length+ rectangle.width));}
-    public int getSurface(Rectangle rectangle){return rectangle.length*rectangle.width;}
+    public int getLength(){return this.length;}
+    public int getWidth(){return this.width;}
+    public int getPerimeter(){return (2*(this.length+ this.width));}
+    public int getSurface(){return this.length*this.width;}
 
     public void setBoundingBox(int  heightBB,  int  widthBB) {
         this.length = heightBB;

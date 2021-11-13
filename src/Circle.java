@@ -8,7 +8,7 @@ public class Circle extends Ellipse{
 
     public Circle(int x, int y, Color c) {
         super(x, y, c);
-        this.C = c;
+        //this.C = c;
     }
 
     //==============SETS=================//

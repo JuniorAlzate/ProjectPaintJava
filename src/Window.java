@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 
 public class Window extends JFrame implements ActionListener {
 
@@ -23,15 +24,26 @@ public class Window extends JFrame implements ActionListener {
     draw.setBounds(0,0,800,460);
     draw.setBackground(Color.white);
 
+        this.draw.setNameFigure("Rectangle");
+        this.draw.setC(Color.red);
+
 //================ menu bar ===========================//
 
         JMenuBar m = new JMenuBar();
 
         JMenu menu1= new JMenu("File");
+
         JMenuItem New = new JMenuItem("New") ;
+        New.addActionListener(this);
+
         JMenuItem Open = new JMenuItem("Open") ;
+        Open.addActionListener(this);
+
         JMenuItem Save = new JMenuItem("Save") ;
+        Save.addActionListener(this);
+
         JMenuItem Quit = new JMenuItem("Quit") ;
+        Quit.addActionListener(this);
 
         menu1.add(New);
         menu1.add(Open);
@@ -122,6 +134,7 @@ public class Window extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
+        Container contentPanel = this.getContentPane() ;
 
         switch (cmd) {
             case "Black":
@@ -178,6 +191,56 @@ public class Window extends JFrame implements ActionListener {
                 System.out.println("I've been clicked circle!");
                 this.draw.setNameFigure("Circle");
                 break;
+    //======================Button Implementation Figures==============================
+            case "Save":
+                SaveFile();
+                //draw.SaveDrawing(draw);
+                break;
+            case "Open":
+               // OpenFile();
+                Container contentPane = getContentPane();
+                draw.RecallDrawing(contentPane,draw);
+                break;
+            case "New":
+               draw.Resett(contentPanel);
+               //draw.getList().clear();
+               repaint();
+
+                break;
+            case "Author":
+                JOptionPane info = new JOptionPane();
+                JOptionPane.showInternalMessageDialog( info, "Paint by Juan S. Yule",
+                        "Information",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    public void SaveFile() {
+        FileOutputStream file;
+        ObjectOutputStream out;
+        try {
+            file = new FileOutputStream(JOptionPane.showInputDialog(null, "save: "));
+            out = new ObjectOutputStream(file);
+            out.writeObject(this.draw);
+            out.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    public void OpenFile() {
+        FileInputStream file_in;
+        ObjectInputStream in;
+        Container contentPane = getContentPane();
+        contentPane.remove(this.draw);
+        try {
+            file_in = new FileInputStream(JOptionPane.showInputDialog(null, "Open: "));
+            in = new ObjectInputStream(file_in);
+            this.draw = (Drawing) in.readObject();
+            contentPane.add(this.draw);
+            contentPane.revalidate();
+            contentPane.repaint();
+            in.close();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }

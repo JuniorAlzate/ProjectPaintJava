@@ -4,7 +4,7 @@ public class Ellipse extends Figure {
 
     int x;
     int y;
-    double pi = 3.14;
+    double pi = 3.1416;
 
     protected int semiAxisX = 0; //
     protected int semiAxisY = 0;  //
@@ -36,19 +36,19 @@ public class Ellipse extends Figure {
     }
 
     //=========SET=============//
-    public double getSurface(Ellipse ellipse) {
-        return pi * ellipse.semiAxisY * ellipse.semiAxisX;
+    public double getSurface() {
+        return pi * this.semiAxisY * this.semiAxisX;
     }
 
-    public int getSemiAxisX(Ellipse ellipse) {
-        return ellipse.semiAxisX;
+    public int getSemiAxisX() {
+        return this.semiAxisX;
     }
 
-    public int getSemiAxisY(Ellipse ellipse) {
-        return ellipse.semiAxisY;
+    public int getSemiAxisY() {
+        return this.semiAxisY;
     }
 
-    public double getPerimeter(Ellipse ellipse) {return Math.round(2 * pi * (Math.sqrt((Math.pow(ellipse.semiAxisX, 2) + Math.pow(ellipse.semiAxisY, 2)) / 2)));}
+    public double getPerimeter() {return Math.round(2 * pi * (Math.sqrt((Math.pow(this.semiAxisX, 2) + Math.pow(this.semiAxisY, 2)) / 2)));}
 
     public void setBoundingBox(int heightBB, int widthBB) {
         this.semiAxisX = heightBB;

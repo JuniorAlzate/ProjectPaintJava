@@ -2,7 +2,7 @@ import java.awt.*;
 
 
 
-abstract class Figure {
+public abstract class Figure implements java.io.Serializable{
 
     public Color C;
 
@@ -22,7 +22,7 @@ abstract class Figure {
     }
 
     public Figure(){}
-
+    public void setOrigin(Point P){this.Origin = P;}
     //==================ABSTRACT METHODS===================//
 
     public abstract void setBoundingBox(int heightBB, int widthBB);

@@ -2,6 +2,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 import java.util.ArrayList;
 
 
@@ -41,6 +42,9 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
     public void setName(String name){
         this.nameFigure = name;
     }
+
+
+    public ArrayList<Figure> getList() {return list;}
 
     public Drawing(Color color){
         super();
@@ -98,12 +102,34 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 
     @Override
     public void mouseDragged(MouseEvent e) {
+        /*
         x_dragged = e.getX();
         y_dragged = e.getY();
         x_real = Math.abs(x_dragged-x_pressed);
         y_real = Math.abs(y_dragged-y_pressed);
 
         list.get(list.size()-1).setBoundingBox(x_real, y_real);
+        this.repaint();*/
+        x_dragged = e.getX();
+        y_dragged = e.getY();
+        //System.out.println("x:"+" "+ x_dragged+" y:"+y_dragged);
+        x_real = x_dragged-x_pressed;
+        y_real = y_dragged-y_pressed;
+        //System.out.println("x:"+" "+ x_real+" y:"+y_real);
+
+        if (x_real < 0){
+            System.out.println(list.get(list.size()-1));
+            list.get(list.size()-1).setOrigin(new Point(x_dragged, y_pressed));
+        }
+        if (y_real < 0){
+            System.out.println(list.get(list.size()-1));
+            list.get(list.size()-1).setOrigin(new Point(x_pressed, y_dragged));
+        }
+        if (y_real < 0 && x_real < 0){
+            System.out.println(list.get(list.size()-1));
+            list.get(list.size()-1).setOrigin(new Point(x_dragged, y_dragged));
+        }
+        list.get(list.size()-1).setBoundingBox(Math.abs(x_real), Math.abs(y_real));
         this.repaint();
     }
 
@@ -117,4 +143,51 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
     @Override
     public void mouseExited(MouseEvent e) {}
 
+
+
+    public void SaveDrawing(Drawing DEREF) {
+        FileOutputStream file;
+        ObjectOutputStream out;
+        try {
+            file = new FileOutputStream(JOptionPane.showInputDialog(null, "save: "));
+            out = new ObjectOutputStream(file);
+            out.writeObject(DEREF);
+            out.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    public void RecallDrawing(Container contentPane, Drawing DEREF) {
+        FileInputStream file_in;
+        ObjectInputStream in ;
+        //Drawing deref;
+        //Container contentPane = getContentPane();
+        contentPane.remove(DEREF);
+        try {
+            file_in = new FileInputStream(JOptionPane.showInputDialog(null, "Open: "));
+            in = new ObjectInputStream(file_in);
+            DEREF = (Drawing) in.readObject();
+            in.close();
+            contentPane.add(DEREF);
+            contentPane.revalidate();
+            contentPane.repaint();
+            contentPane.setBackground(Color.black);
+
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void Resett(Container contentPane) {
+        contentPane.remove(this);
+        this.getList().clear();
+        contentPane.add(this);
+        contentPane.revalidate();
+        contentPane.repaint();
+        contentPane.setBackground(Color.blue);
+
+    }
 }
