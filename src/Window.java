@@ -32,6 +32,7 @@ public class Window extends JFrame implements ActionListener {
         JMenuBar m = new JMenuBar();
 
         JMenu menu1= new JMenu("File");
+        JMenu menu2 = new JMenu("About");
 
         JMenuItem New = new JMenuItem("New") ;
         New.addActionListener(this);
@@ -45,18 +46,24 @@ public class Window extends JFrame implements ActionListener {
         JMenuItem Quit = new JMenuItem("Quit") ;
         Quit.addActionListener(this);
 
+        JMenuItem Author = new JMenuItem("Author");
+        Author.addActionListener(this);
+
+        menu2.add(Author);
         menu1.add(New);
         menu1.add(Open);
         menu1.add(Save);
         menu1.add(Quit);
 
         m.add(menu1);
+        m.add(menu2);
 
 //====================PANEL FOR COLORS=========================================
 
         JButton black = new JButton("Black");
         black.addActionListener(this);
         black.setBackground(Color.black);
+        black.setForeground(Color.white);
 
         JButton yellow = new JButton("Yellow");
         yellow.setBackground(Color.yellow);
@@ -212,7 +219,7 @@ public class Window extends JFrame implements ActionListener {
 
             case "Author":
                 JOptionPane info = new JOptionPane();
-                JOptionPane.showInternalMessageDialog( info, "Paint by Junior Elian ALzate",
+                JOptionPane.showInternalMessageDialog( info, "Paint by Junior Elian ALZATE MORERA",
                         "Information",JOptionPane.INFORMATION_MESSAGE);
         }
     }
