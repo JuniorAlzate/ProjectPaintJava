@@ -3,9 +3,6 @@ import java.awt.*;
 
 public class Circle extends Ellipse{
 
-    double pi = 3.1416;
-    int r;
-
     //=========CIRCLE CONSTRUCTOR=========//
 
     public Circle(int x, int y, Color c) {
@@ -34,10 +31,7 @@ public class Circle extends Ellipse{
         this.semiAxisY = widthBB;
     }
 
-    //=============GETTER=============//
 
-    //public double getSurface(Circle circle) {return pi*circle.semiAxisX*circle.semiAxisY;}
-    //public double getPerimeter(Circle circle) {return 2*pi*circle.semiAxisX;}
 
     public String ToString() {return Integer.toString(x) + Integer.toString(y) + Integer.toString(r); }
 }
