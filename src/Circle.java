@@ -28,7 +28,7 @@ public class Circle extends Ellipse{
 
     public void setBoundingBox(int heightBB, int widthBB) {
         this.semiAxisX = heightBB;
-        this.semiAxisY = widthBB;
+        this.semiAxisY = heightBB;
     }
 
 
