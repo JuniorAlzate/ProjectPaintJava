@@ -12,13 +12,9 @@ public class Point implements java.io.Serializable {
         this.Y = b;
     }
 
-    public int getx() {
-        return X;
-    }
+    public int getx() {return X;}
+    public int gety() {return Y;}
 
-    public int gety() {
-        return Y;
-    }
 
     @Override public String toString(){
         return "("+X+","+Y+")";

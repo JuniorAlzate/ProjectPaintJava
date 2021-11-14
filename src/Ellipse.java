@@ -9,12 +9,14 @@ public class Ellipse extends Figure {
     protected int semiAxisX = 0; //
     protected int semiAxisY = 0;  //
 
-    //Created Ellipse
-    public Ellipse(int px, int py, Color c) {
-        super(px, py, c);
-    }
+    //=========ELLIPSE CONSTRUCTORS=========//
+
     public Ellipse() {
         super();
+    }
+
+    public Ellipse(int px, int py, Color c) {
+        super(px, py, c);
     }
 
     public Ellipse(int x, int y, int semiAxisX, int semiAxisY, Color color) {
@@ -22,6 +24,8 @@ public class Ellipse extends Figure {
     this.semiAxisX = semiAxisX;
     this.semiAxisY = semiAxisY;
     }
+
+    //=============SETTER=============//
 
     public void setSemiAxisX(int axisX) {
         if (axisX > 0) {
@@ -35,25 +39,24 @@ public class Ellipse extends Figure {
         }
     }
 
-    //=========SET=============//
-    public double getSurface() {
-        return pi * this.semiAxisY * this.semiAxisX;
-    }
-
-    public int getSemiAxisX() {
-        return this.semiAxisX;
-    }
-
-    public int getSemiAxisY() {
-        return this.semiAxisY;
-    }
-
-    public double getPerimeter() {return Math.round(2 * pi * (Math.sqrt((Math.pow(this.semiAxisX, 2) + Math.pow(this.semiAxisY, 2)) / 2)));}
-
     public void setBoundingBox(int heightBB, int widthBB) {
         this.semiAxisX = heightBB;
         this.semiAxisY = widthBB;
     }
+
+    //=============GETTER=============//
+
+    public double getSurface() {
+        return pi * this.semiAxisY * this.semiAxisX;
+    }
+    public int getSemiAxisX() {
+        return this.semiAxisX;
+    }
+    public int getSemiAxisY() {
+        return this.semiAxisY;
+    }
+    public double getPerimeter() {return Math.round(2 * pi * (Math.sqrt((Math.pow(this.semiAxisX, 2) + Math.pow(this.semiAxisY, 2)) / 2)));}
+
     @Override
     public void Draw(Graphics g) {
         g.setColor(this.C);

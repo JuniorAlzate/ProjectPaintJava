@@ -18,16 +18,16 @@ public class Window extends JFrame implements ActionListener {
         Container contentPanel = this.getContentPane() ;
         contentPanel.setLayout(null);
 
-//============================Panel Draw==================================//
+//============================DRAWING PANEL==================================//
 
     this.draw = new Drawing(Color.black);
     draw.setBounds(0,0,800,460);
     draw.setBackground(Color.white);
 
-        this.draw.setNameFigure("Rectangle");
-        this.draw.setC(Color.red);
+        this.draw.setNameFigure("Rectangle"); //Default figure and color
+        this.draw.setC(Color.black);
 
-//================ menu bar ===========================//
+//====================MENU BAR===========================//
 
         JMenuBar m = new JMenuBar();
 
@@ -52,7 +52,7 @@ public class Window extends JFrame implements ActionListener {
 
         m.add(menu1);
 
-//====================Panel Colors=========================================
+//====================PANEL FOR COLORS=========================================
 
         JButton black = new JButton("Black");
         black.addActionListener(this);
@@ -74,9 +74,9 @@ public class Window extends JFrame implements ActionListener {
         green.setBackground(Color.green);
         green.addActionListener(this);
 
-        JButton purple = new JButton("Purple");
-        purple.setBackground(Color.cyan);
-        purple.addActionListener(this);
+        JButton cyan = new JButton("Cyan");
+        cyan.setBackground(Color.cyan);
+        cyan.addActionListener(this);
 
         JButton blue = new JButton("Blue");
         blue.setBackground(Color.blue);
@@ -95,11 +95,11 @@ public class Window extends JFrame implements ActionListener {
         PanelColors.add(red);
         PanelColors.add(pink);
         PanelColors.add(green);
-        PanelColors.add(purple);
+        PanelColors.add(cyan);
         PanelColors.add(blue);
         PanelColors.add(orange);
 
-//=====================Panel Figures======================================
+//=====================PANEL FOR FIGURES======================================
 
         JButton Ellipse = new JButton("Ellipse");
         Ellipse.addActionListener(this);
@@ -121,7 +121,7 @@ public class Window extends JFrame implements ActionListener {
         southPanel.add(Circle);
         southPanel.add(Square);
 
-    //======================Add panels to the window==============================
+    //======================ADD PANELS==============================
 
         contentPanel.add(this.draw);
         contentPanel.add(PanelColors);
@@ -130,7 +130,7 @@ public class Window extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
-    //======================Button Implementation Colors==============================
+    //======================COLOR IMPLEMENTATION==============================
 
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
@@ -149,8 +149,8 @@ public class Window extends JFrame implements ActionListener {
                 System.out.println("I've been clicked yellow!");
                 this.draw.setC(Color.yellow);
                 break;
-            case "Purple":
-                System.out.println("I've been clicked purple!");
+            case "Cyan":
+                System.out.println("I've been clicked Cyan!");
                 this.draw.setC(Color.cyan);
                 break;
             case "Blue":
@@ -170,7 +170,7 @@ public class Window extends JFrame implements ActionListener {
                 this. draw.setC(Color.pink);
                 break;
 
-    //======================Button Implementation Figures==============================
+    //======================FIGURE IMPLEMENTATION==============================
 
             case "Ellipse":
                 System.out.println("I've been clicked ellipse!");
@@ -191,10 +191,12 @@ public class Window extends JFrame implements ActionListener {
                 System.out.println("I've been clicked circle!");
                 this.draw.setNameFigure("Circle");
                 break;
-    //======================Button Implementation Figures==============================
+
+    //======================FILE HANDLER IMPLEMENTATION==============================//
+
             case "Save":
-                SaveFile();
-                //draw.SaveDrawing(draw);
+                //SaveFile();
+                draw.SaveDrawing(draw);
                 break;
             case "Open":
                // OpenFile();
@@ -202,17 +204,22 @@ public class Window extends JFrame implements ActionListener {
                 draw.RecallDrawing(contentPane,draw);
                 break;
             case "New":
-               draw.Resett(contentPanel);
+               draw.ResetDrawing(contentPanel);
                //draw.getList().clear();
                repaint();
+               break;
 
-                break;
             case "Author":
                 JOptionPane info = new JOptionPane();
-                JOptionPane.showInternalMessageDialog( info, "Paint by Juan S. Yule",
+                JOptionPane.showInternalMessageDialog( info, "Paint by Junior Elian ALzate",
                         "Information",JOptionPane.INFORMATION_MESSAGE);
         }
     }
+
+
+
+
+
     public void SaveFile() {
         FileOutputStream file;
         ObjectOutputStream out;
