@@ -181,7 +181,7 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
             in = new ObjectInputStream(file_in);
             DEREF = (Drawing) in.readObject();
             in.close();
-            contentPane.add(DEREF);
+            //contentPane.add(DEREF);
             contentPane.revalidate();
             contentPane.repaint();
             contentPane.setBackground(Color.black);

@@ -19,16 +19,16 @@ public class TestSwing {
 
         /* ============TEST CLASS RECTANGLE===========//
 
-        /*Rectangle Rect1 = new Rectangle(10,20,80,50 Color.LIGHT_GRAY);
+        /*Rectangle Rect1 = new Rectangle(10,20,80,50 Color.BLUE);
         System.out.println("||lenght: " + Rect1.getLength() + "||widht: " + Rect1.getWidth() + "||Color: " + Rect1.getC());
         System.out.println(Rect1.getPerimeter());*/
 
-        /* ============TEST CLASS ELLIPSE===========//
+         /*============TEST CLASS ELLIPSE===========//
 
-        Ellipse Ellip1 = new Ellipse(7,4, Color.BLUE);
-        System.out.println("X: " + Ellip1.getX() + "||Y: " + Ellip1.getY() + "||Color: " + Ellip1.getC());
+        Ellipse Elip0 = new Ellipse(10,5, Color.BLUE);
+        System.out.println("X: " + Elip0.getSemiAxisX() + "||Y: " + Elip0.getSemiAxisY() + "||Color: " + Elip0.getC());
 
-        //===============================//
+        //=============CHANGE RECTANGLE PARAMETERS================//
 
         Rect1.setLength(100);
         Rect1.setWidth(150);
@@ -37,18 +37,23 @@ public class TestSwing {
         System.out.println("Perimeter :" + Rect1.getPerimeter());
         System.out.println("Surface :" + Rect1.getSurface());
 
-        //===============================//
+        //===============CHANGE ELLIPSE PARAMETERS================//
 
-        Ellip1.setSemiAxisX(10);
-        Ellip1.setSemiAxisY(2);
-        System.out.println("SemiAxesX: " + Ellip1.getSemiAxisX());
-        System.out.println("SemiAxesY: " + Ellip1.getSemiAxisY());
-        System.out.println("Perimeter : " + Ellip1.getPerimeter());
+        Elip0.setSemiAxisX(100);
+        Elip0.setSemiAxisY(50);
+        System.out.println("SemiAxesX: " + Elip0.getSemiAxisX());
+        System.out.println("SemiAxesY: " + Elip0.getSemiAxisY());
+        System.out.println("Perimeter : " + Elip0.getPerimeter());
 
-        //===============================//
+        //==============TEST CLASS SQUARE=================*/
 
-        Square  square1 = new Square(10, Color.ORANGE);
-        System.out.println("L Square :" + square1.getX());*/
+        /*Square  square0 = new Square(10,10,50, Color.RED);
+        System.out.println("L Square :" + square0.getLength() + " and " + "it's surface: " + square0.getSurface());*/
 
+        //==============TEST CLASS CIRCLE=================*/
+
+       /* Circle circle0 = new Circle(10,10,50, Color.green);
+        System.out.println("circle radio:" + circle0.getSemiAxisX() + "it's surface: " + circle0.getSurface());
+        System.out.println("circle perimeter:" + circle0.getPerimeter());*/
     }
 }

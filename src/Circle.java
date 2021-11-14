@@ -12,6 +12,10 @@ public class Circle extends Ellipse{
         super(x, y, c);
     }
 
+    public Circle(int x, int y, int radio, Color c) {
+        super(x, y, radio, radio, c);
+    }
+
     //==============SETTER=================//
 
     public void setSemiAxisY(int axisY){
@@ -27,13 +31,13 @@ public class Circle extends Ellipse{
 
     public void setBoundingBox(int heightBB, int widthBB) {
         this.semiAxisX = heightBB;
-        this.semiAxisY = heightBB;
+        this.semiAxisY = widthBB;
     }
 
     //=============GETTER=============//
 
-    public double getSurface(Circle circle) {return pi*circle.semiAxisX*circle.semiAxisY;}
-    public double getPerimeter(Circle circle) {return 2*pi*circle.semiAxisX;}
+    //public double getSurface(Circle circle) {return pi*circle.semiAxisX*circle.semiAxisY;}
+    //public double getPerimeter(Circle circle) {return 2*pi*circle.semiAxisX;}
 
     public String ToString() {return Integer.toString(x) + Integer.toString(y) + Integer.toString(r); }
 }

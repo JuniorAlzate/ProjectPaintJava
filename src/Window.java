@@ -202,6 +202,7 @@ public class Window extends JFrame implements ActionListener {
                // OpenFile();
                 Container contentPane = getContentPane();
                 draw.RecallDrawing(contentPane,draw);
+                contentPanel.add(draw);
                 break;
             case "New":
                draw.ResetDrawing(contentPanel);
