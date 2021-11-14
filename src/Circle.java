@@ -33,5 +33,5 @@ public class Circle extends Ellipse{
 
 
 
-    public String ToString() {return Integer.toString(x) + Integer.toString(y) + Integer.toString(r); }
+    public String ToString() {return Integer.toString(x) + Integer.toString(y); }
 }
