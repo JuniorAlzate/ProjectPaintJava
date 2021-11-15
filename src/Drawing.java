@@ -152,14 +152,14 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 
     //=================FILE HANDLER IMPLEMENTATION======================//
 
-    public void SaveDrawing(Drawing DEREF) {
+    public void SaveDrawing() {
         FileOutputStream file;
         ObjectOutputStream out;
 
         try {
             file = new FileOutputStream(JOptionPane.showInputDialog(null, "save: "));
             out = new ObjectOutputStream(file);
-            out.writeObject(DEREF);
+            out.writeObject(this.list);
             out.close();
         }
 
@@ -168,23 +168,21 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
             e.printStackTrace();
         }
     }
+    public void reset(){
+        this.list.clear();
+        this.repaint();
 
-    public void RecallDrawing(Container contentPane, Drawing DEREF) {
+    }
+    public void RecallDrawing() {
         FileInputStream file_in;
         ObjectInputStream in ;
-        //Drawing deref;
-        //Container contentPane = getContentPane();
-        contentPane.remove(DEREF);
-
+        reset();
         try {
             file_in = new FileInputStream(JOptionPane.showInputDialog(null, "Open: "));
             in = new ObjectInputStream(file_in);
-            DEREF = (Drawing) in.readObject();
+            this.list = (ArrayList<Figure>)  in.readObject();
             in.close();
-            //contentPane.add(DEREF);
-            contentPane.revalidate();
-            contentPane.repaint();
-            contentPane.setBackground(Color.black);
+            this.repaint();
         }
 
         catch (IOException | ClassNotFoundException e) {

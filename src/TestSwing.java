@@ -8,7 +8,7 @@ public class TestSwing {
                 //============TEST PROJECT===========//
 //  ===   ===   ===   ===   ===   ===   ===   ===   ===   ===   ===   ===//
 
-        Window win = new Window("Paint it black", 800, 600);
+        Window win = new Window("Paint", 800, 600);
 
         /* ============TEST CLASS POINT===========//
 

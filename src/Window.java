@@ -202,18 +202,13 @@ public class Window extends JFrame implements ActionListener {
     //======================FILE HANDLER IMPLEMENTATION==============================//
 
             case "Save":
-                //SaveFile();
-                draw.SaveDrawing(draw);
+                draw.SaveDrawing();
                 break;
             case "Open":
-               // OpenFile();
-                Container contentPane = getContentPane();
-                draw.RecallDrawing(contentPane,draw);
-                contentPanel.add(draw);
+                draw.RecallDrawing();
                 break;
             case "New":
                draw.ResetDrawing(contentPanel);
-               //draw.getList().clear();
                repaint();
                break;
 
@@ -223,8 +218,6 @@ public class Window extends JFrame implements ActionListener {
                         "Information",JOptionPane.INFORMATION_MESSAGE);
         }
     }
-
-
 
 
 
