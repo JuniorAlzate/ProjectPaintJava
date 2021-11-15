@@ -21,7 +21,7 @@ public class Window extends JFrame implements ActionListener {
 //============================DRAWING PANEL==================================//
 
     this.draw = new Drawing(Color.black);
-    draw.setBounds(0,0,800,460);
+    draw.setBounds(0,0,800,480);
     draw.setBackground(Color.white);
 
         this.draw.setNameFigure("Rectangle"); //Default figure and color
@@ -140,10 +140,10 @@ public class Window extends JFrame implements ActionListener {
     //======================COLOR IMPLEMENTATION==============================
 
     public void actionPerformed(ActionEvent e) {
-        String cmd = e.getActionCommand();
+        String command = e.getActionCommand();
         Container contentPanel = this.getContentPane() ;
 
-        switch (cmd) {
+        switch (command) {
             case "Black":
                 System.out.println("I've been clicked black!");
                 this.draw.setC(Color.black);
@@ -201,54 +201,25 @@ public class Window extends JFrame implements ActionListener {
 
     //======================FILE HANDLER IMPLEMENTATION==============================//
 
+            case "New":
+                draw.ResetDrawing();
+                repaint();
+                break;
             case "Save":
                 draw.SaveDrawing();
                 break;
             case "Open":
                 draw.RecallDrawing();
                 break;
-            case "New":
-               draw.ResetDrawing(contentPanel);
-               repaint();
-               break;
+            case "Quit":
+                draw.ResetDrawing();
+                dispose();
+                break;
 
             case "Author":
                 JOptionPane info = new JOptionPane();
                 JOptionPane.showInternalMessageDialog( info, "Paint by Junior Elian ALZATE MORERA",
                         "Information",JOptionPane.INFORMATION_MESSAGE);
-        }
-    }
-
-
-
-    public void SaveFile() {
-        FileOutputStream file;
-        ObjectOutputStream out;
-        try {
-            file = new FileOutputStream(JOptionPane.showInputDialog(null, "save: "));
-            out = new ObjectOutputStream(file);
-            out.writeObject(this.draw);
-            out.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
-    public void OpenFile() {
-        FileInputStream file_in;
-        ObjectInputStream in;
-        Container contentPane = getContentPane();
-        contentPane.remove(this.draw);
-        try {
-            file_in = new FileInputStream(JOptionPane.showInputDialog(null, "Open: "));
-            in = new ObjectInputStream(file_in);
-            this.draw = (Drawing) in.readObject();
-            contentPane.add(this.draw);
-            contentPane.revalidate();
-            contentPane.repaint();
-            in.close();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 }

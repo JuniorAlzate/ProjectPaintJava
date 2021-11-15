@@ -70,31 +70,39 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 
     @Override
     public void mousePressed(MouseEvent e) {
+        String command = this.getNameFigure();
+
         this.x_pressed = e.getX();
         this.y_pressed = e.getY();
         radio = (int) Math.pow((Math.pow(Distance_x/2,2) + Math.pow(Distance_y/2,2)),0.5);
 
         System.out.println(this.x_pressed+" and " + this.y_pressed + " color =" + this.C);
 
-        if (nameFigure.equals("Rectangle")){
+        switch (command){
+
+            case "Rectangle":
             Rectangle rectangulo = new Rectangle(x_pressed, y_pressed, Distance_x, Distance_y, C);
             this.list.add(rectangulo);
             System.out.println(list);
-        }
-        if (nameFigure.equals("Ellipse")){
+            break;
+
+            case "Ellipse":
             Ellipse elipse = new Ellipse(x_pressed, y_pressed,Distance_x/2,Distance_y/2, C);
             this.list.add(elipse);
             System.out.println(list);
-        }
-        if (nameFigure.equals("Square")){
-            Square cuadrado = new Square(x_pressed,  y_pressed, Distance_x, C);
+            break;
+
+            case "Square":
+            Square cuadrado = new Square(x_pressed,  y_pressed, Distance_y, C);
             this.list.add(cuadrado);
             System.out.println(list);
-        }
-        if (nameFigure.equals("Circle")){
+            break;
+
+            case "Circle":
             Circle circulo = new Circle(x_pressed, y_pressed, C);
             this.list.add(circulo);
             System.out.println(list);
+            break;
         }
     }
 
@@ -107,23 +115,14 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        /*
-        x_dragged = e.getX();
-        y_dragged = e.getY();
-        x_real = Math.abs(x_dragged-x_pressed);
-        y_real = Math.abs(y_dragged-y_pressed);
-
-        list.get(list.size()-1).setBoundingBox(x_real, y_real);
-        this.repaint();*/
 
         x_dragged = e.getX();
         y_dragged = e.getY();
-        //System.out.println("x:"+" "+ x_dragged+" y:"+y_dragged);
+
         Distance_x = x_dragged-x_pressed;
         Distance_y = y_dragged-y_pressed;
-        //System.out.println("x:"+" "+ x_real+" y:"+y_real);
 
-        if (Distance_x < 0){
+        if (Distance_x < 0 && Distance_x < Distance_y){
             System.out.println(list.get(list.size()-1));
             list.get(list.size()-1).setOrigin(new Point(x_dragged, y_pressed));
         }
@@ -153,50 +152,49 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
     //=================FILE HANDLER IMPLEMENTATION======================//
 
     public void SaveDrawing() {
-        FileOutputStream file;
+        FileOutputStream file_out;
         ObjectOutputStream out;
 
-        try {
-            file = new FileOutputStream(JOptionPane.showInputDialog(null, "save: "));
-            out = new ObjectOutputStream(file);
-            out.writeObject(this.list);
-            out.close();
-        }
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Give me a name");
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
 
-        catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        int result = fileChooser.showSaveDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            try {
+                file_out = new FileOutputStream(selectedFile.getAbsolutePath());
+                out = new ObjectOutputStream(file_out);
+                out.writeObject(this.list);
+                out.close();
+            } catch (IOException e) {e.printStackTrace();}
         }
     }
-    public void reset(){
-        this.list.clear();
-        this.repaint();
 
-    }
     public void RecallDrawing() {
         FileInputStream file_in;
-        ObjectInputStream in ;
-        reset();
-        try {
-            file_in = new FileInputStream(JOptionPane.showInputDialog(null, "Open: "));
-            in = new ObjectInputStream(file_in);
-            this.list = (ArrayList<Figure>)  in.readObject();
-            in.close();
-            this.repaint();
-        }
+        ObjectInputStream in;
 
-        catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+        ResetDrawing();
+
+        int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            try {
+                file_in = new FileInputStream(selectedFile.getAbsolutePath());
+                in = new ObjectInputStream(file_in);
+                this.list = (ArrayList<Figure>) in.readObject();
+                this.repaint();
+                in.close();
+            } catch (IOException | ClassNotFoundException e) {e.printStackTrace();}
         }
     }
 
-    public void ResetDrawing(Container contentPane) {
-        contentPane.remove(this);
+    public void ResetDrawing() {
         this.getList().clear();
-        contentPane.add(this);
-        contentPane.revalidate();
-        contentPane.repaint();
-        contentPane.setBackground(Color.blue);
+        this.repaint();
     }
 
 }
