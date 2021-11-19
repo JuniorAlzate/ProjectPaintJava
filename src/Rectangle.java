@@ -27,7 +27,7 @@ class Rectangle extends Figure{
 
     public int getLength(){return this.length;}
     public int getWidth(){return this.width;}
-    public int getPerimeter(){return (2*(this.length+ this.width));}
+    public int getPerimeter(){return (2*(this.length + this.width));}
     public int getSurface(){return this.length*this.width;}
 
 

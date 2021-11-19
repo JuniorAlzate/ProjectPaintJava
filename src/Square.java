@@ -24,12 +24,12 @@ public class Square extends Rectangle {
 
     public void setBoundingBox(int length, int width) {
         if (length <= width) {
-            this.length = Math.min(length, width);
-            this.width = Math.min(length, width);
+            this.length = Math.min(Math.abs(length), Math.abs(width));
+            this.width = Math.min(Math.abs(length), Math.abs(width));
         }
         else if (length > width) {
-            this.length = Math.max(length, width);
-            this.width = Math.max(length, width);
+            this.length = Math.max(Math.abs(length), Math.abs(width));
+            this.width = Math.max(Math.abs(length), Math.abs(width));
         }
 
     }
